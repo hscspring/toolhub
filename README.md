@@ -11,16 +11,7 @@ This is a minimal demo project that includes:
 
 ## Quick start
 
-### Admin (local only)
-```
-cd admin
-npm install
-npm run dev
-# open http://localhost:5173
-```
 
-- Use the admin UI to add/edit tools.
-- Click "Export JSON" to download `tools.json`. Save it to `../web/public/tools.json`.
 
 ### Web (deployable static site)
 ```

@@ -5,9 +5,10 @@ node_modules
 
 # Testing
 coverage
+design.md
 
 # Production
-# dist
+dist
 build
 admin
 
