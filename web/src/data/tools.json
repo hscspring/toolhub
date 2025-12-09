@@ -1,0 +1,51 @@
+[
+  {
+    "id": "1765298894959",
+    "name": "Waline",
+    "slug": "waline",
+    "url": "https://waline.js.org/",
+    "category": "Website",
+    "tags": [
+      "comment"
+    ],
+    "description": "一款简洁、安全的评论系统。",
+    "icon": "https://waline.js.org/favicon.ico"
+  },
+  {
+    "id": "1765298691976",
+    "name": "LeanCloud",
+    "slug": "leancloud",
+    "url": "https://leancloud.app/",
+    "category": "CloudHost",
+    "tags": [
+      "comment"
+    ],
+    "description": "LeanCloud is the leading backend-as-a-service provider that offers a complete set of cloud services including object storage, file storage, web hosting, container, instant messaging, push notification, SMS, and game backend.",
+    "icon": "https://leancloud.app/apple-touch-icon.png"
+  },
+  {
+    "id": "1765296250132",
+    "name": "Texo",
+    "slug": "texo",
+    "url": "https://texocr.netlify.app/ocr",
+    "category": "Math",
+    "tags": [
+      "latex"
+    ],
+    "description": "In-browser LaTeX OCR",
+    "icon": "https://texocr.netlify.app/favicon.ico"
+  },
+  {
+    "id": "2",
+    "name": "Figma: The Collaborative Interface Design Tool",
+    "slug": "figma-the-collaborative-interface-design-tool",
+    "url": "https://www.figma.com",
+    "category": "Design",
+    "tags": [
+      "design",
+      "ui"
+    ],
+    "description": "Figma is the leading collaborative design platform for building meaningful products. Design, prototype, and build products faster—while gathering feedback all in one place.",
+    "icon": "https://static.figma.com/app/icon/1/favicon.ico"
+  }
+]
