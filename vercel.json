@@ -2,5 +2,10 @@
     "buildCommand": "cd web && npm install && npm run build",
     "outputDirectory": "web/dist",
     "framework": null,
-    "installCommand": "cd web && npm install"
+    "installCommand": "cd web && npm install",
+    "build": {
+        "env": {
+            "NODE_VERSION": "18.20.8"
+        }
+    }
 }
