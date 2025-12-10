@@ -77,7 +77,6 @@ const ToolDetail = () => {
                     serverURL: 'https://toolhub-comment-9w7v.vercel.app',
                     lang: lang === 'zh' ? 'zh-CN' : 'en',
                     path: `/tool/${id}`,
-                    dark: 'body.dark-mode',
                     emoji: [
                         'https://unpkg.com/@waline/emojis@1.1.0/weibo',
                         'https://unpkg.com/@waline/emojis@1.1.0/bilibili',
@@ -139,7 +138,7 @@ const ToolDetail = () => {
                                 {tool.category}
                             </span>
                             {tool.tags.map(tag => (
-                                <span key={tag} style={{ background: 'rgba(255,255,255,0.05)', padding: '0.25rem 0.75rem', borderRadius: '100px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                                <span key={tag} style={{ background: 'var(--bg-tertiary)', padding: '0.25rem 0.75rem', borderRadius: '100px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
                                     #{tag}
                                 </span>
                             ))}

@@ -2,22 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Colors - Premium Dark Theme */
-  --bg-primary: #0f172a; /* Slate 900 */
-  --bg-secondary: #1e293b; /* Slate 800 */
-  --bg-tertiary: #334155; /* Slate 700 */
+  /* Colors - Light Theme (requested) */
+  --bg-primary: #E6F7FF; /* Light Blue Background */
+  --bg-secondary: #FFFFFF; /* White Card Background */
+  --bg-tertiary: #F5F5F5; /* Light Gray / Divider */
   
-  --text-primary: #f8fafc; /* Slate 50 */
-  --text-secondary: #94a3b8; /* Slate 400 */
-  --text-accent: #38bdf8; /* Sky 400 */
+  --text-primary: #333333; /* Dark Gray for main text */
+  --text-secondary: #666666; /* Medium Gray for secondary text */
+  --text-accent: #1890FF; /* Primary Blue */
   
-  --accent-primary: #0ea5e9; /* Sky 500 */
-  --accent-secondary: #6366f1; /* Indigo 500 */
-  --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+  --accent-primary: #1890FF; /* Primary Deep Blue */
+  --accent-secondary: #13c2c2; /* Secondary Cyan (complementary) */
+  --accent-gradient: linear-gradient(135deg, #1890FF 0%, #36cfc9 100%); /* Blue to Cyan gradient */
   
-  --glass-bg: rgba(30, 41, 59, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+  /* Glassmorphism - Light Mode */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 
   /* Spacing */
   --spacing-xs: 0.25rem;
