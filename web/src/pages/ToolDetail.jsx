@@ -3,8 +3,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, MessageSquare } from 'lucide-react';
 import { useData } from '../contexts/DataContext';
 import { useLanguage } from '../contexts/LanguageContext';
-import { init } from '@waline/client';
-import '@waline/client/style';
 
 const ToolDetail = () => {
     const { id } = useParams();
@@ -26,27 +24,86 @@ const ToolDetail = () => {
 
     // Initialize Waline
     useEffect(() => {
-        if (containerRef.current && !walineInstanceRef.current) {
-            walineInstanceRef.current = init({
-                el: containerRef.current,
-                serverURL: 'https://toolhub-comment-jonowrcte-hugging-ai-team.vercel.app', // User needs to replace this
-                lang: lang === 'zh' ? 'zh-CN' : 'en',
-                path: `/tool/${id}`, // Unique path for each tool
-                dark: 'body.dark-mode', // Auto dark mode
-                emoji: [
-                    'https://unpkg.com/@waline/emojis@1.1.0/weibo',
-                    'https://unpkg.com/@waline/emojis@1.1.0/bilibili',
-                ],
-            });
+        // Don't initialize until tool data is loaded
+        if (!tool) {
+            return;
         }
 
+        let walineScript = null;
+        let cleanedUp = false;
+
+        const loadAndInitWaline = async () => {
+            try {
+                // Wait for container to be ready
+                if (!containerRef.current) {
+                    console.log('[Waline] Container not ready yet');
+                    return;
+                }
+
+                // Check if Waline is already loaded
+                if (!window.Waline) {
+                    // Create and load the Waline script
+                    walineScript = document.createElement('script');
+                    walineScript.type = 'module';
+                    walineScript.textContent = `
+                        import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+                        window.Waline = { init };
+                    `;
+                    document.head.appendChild(walineScript);
+
+                    // Wait for Waline to be available
+                    let attempts = 0;
+                    while (!window.Waline && attempts < 50) {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        attempts++;
+                    }
+
+                    if (!window.Waline) {
+                        console.error('[Waline] Failed to load Waline script');
+                        return;
+                    }
+                }
+
+                // Don't initialize if already initialized or if cleaned up
+                if (walineInstanceRef.current || cleanedUp) {
+                    return;
+                }
+
+                console.log('[Waline] Initializing with path:', `/tool/${id}`);
+
+                // Initialize Waline
+                walineInstanceRef.current = window.Waline.init({
+                    el: containerRef.current,
+                    serverURL: 'https://toolhub-comment-9w7v.vercel.app',
+                    lang: lang === 'zh' ? 'zh-CN' : 'en',
+                    path: `/tool/${id}`,
+                    dark: 'body.dark-mode',
+                    emoji: [
+                        'https://unpkg.com/@waline/emojis@1.1.0/weibo',
+                        'https://unpkg.com/@waline/emojis@1.1.0/bilibili',
+                    ],
+                });
+
+                console.log('[Waline] Initialized successfully');
+            } catch (error) {
+                console.error('[Waline] Error:', error);
+            }
+        };
+
+        loadAndInitWaline();
+
         return () => {
+            cleanedUp = true;
             if (walineInstanceRef.current) {
-                walineInstanceRef.current.destroy();
+                try {
+                    walineInstanceRef.current.destroy();
+                } catch (e) {
+                    console.error('[Waline] Error destroying:', e);
+                }
                 walineInstanceRef.current = null;
             }
-        }
-    }, [id, lang]); // Re-init if ID or Lang changes
+        };
+    }, [id, lang, tool]); // Re-init if ID, Lang, or Tool changes
 
     if (!tool) {
         return <div className="container" style={{ paddingTop: '4rem' }}>Loading...</div>;

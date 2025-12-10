@@ -34,18 +34,5 @@
     ],
     "description": "In-browser LaTeX OCR",
     "icon": "https://texocr.netlify.app/favicon.ico"
-  },
-  {
-    "id": "2",
-    "name": "Figma: The Collaborative Interface Design Tool",
-    "slug": "figma-the-collaborative-interface-design-tool",
-    "url": "https://www.figma.com",
-    "category": "Design",
-    "tags": [
-      "design",
-      "ui"
-    ],
-    "description": "Figma is the leading collaborative design platform for building meaningful products. Design, prototype, and build products faster—while gathering feedback all in one place.",
-    "icon": "https://static.figma.com/app/icon/1/favicon.ico"
   }
 ]
