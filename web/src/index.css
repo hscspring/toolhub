@@ -3,18 +3,27 @@
 
 :root {
   /* Colors - Light Theme (requested) */
-  --bg-primary: #E6F7FF; /* Light Blue Background */
-  --bg-secondary: #FFFFFF; /* White Card Background */
-  --bg-tertiary: #F5F5F5; /* Light Gray / Divider */
-  
-  --text-primary: #333333; /* Dark Gray for main text */
-  --text-secondary: #666666; /* Medium Gray for secondary text */
-  --text-accent: #1890FF; /* Primary Blue */
-  
-  --accent-primary: #1890FF; /* Primary Deep Blue */
-  --accent-secondary: #13c2c2; /* Secondary Cyan (complementary) */
-  --accent-gradient: linear-gradient(135deg, #1890FF 0%, #36cfc9 100%); /* Blue to Cyan gradient */
-  
+  --bg-primary: #E6F7FF;
+  /* Light Blue Background */
+  --bg-secondary: #FFFFFF;
+  /* White Card Background */
+  --bg-tertiary: #F5F5F5;
+  /* Light Gray / Divider */
+
+  --text-primary: #333333;
+  /* Dark Gray for main text */
+  --text-secondary: #666666;
+  /* Medium Gray for secondary text */
+  --text-accent: #1890FF;
+  /* Primary Blue */
+
+  --accent-primary: #1890FF;
+  /* Primary Deep Blue */
+  --accent-secondary: #13c2c2;
+  /* Secondary Cyan (complementary) */
+  --accent-gradient: linear-gradient(135deg, #1890FF 0%, #36cfc9 100%);
+  /* Blue to Cyan gradient */
+
   /* Glassmorphism - Light Mode */
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.8);
@@ -65,7 +74,7 @@ button {
 
 /* Utilities */
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
 }

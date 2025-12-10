@@ -17,8 +17,8 @@ const ToolGrid = ({ tools }) => {
     return (
         <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '1.5rem',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+            gap: '1.25rem',
             paddingBottom: '2rem'
         }}>
             {tools.map(tool => (
