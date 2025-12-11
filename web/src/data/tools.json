@@ -1,5 +1,40 @@
 [
   {
+    "id": "1765431862909",
+    "name": "一译",
+    "slug": "",
+    "url": "https://yiyibooks.cn",
+    "category": "Reading",
+    "tags": [
+      "paper"
+    ],
+    "description": "论文翻译"
+  },
+  {
+    "id": "1765431689097",
+    "name": "File Transfer",
+    "slug": "file-transfer",
+    "url": "https://transfer.52python.cn/",
+    "category": "Network",
+    "tags": [
+      "file-transfer"
+    ],
+    "description": "简单快速的文件传输工具",
+    "icon": "https://transfer.52python.cn/favicon.ico"
+  },
+  {
+    "id": "1765431553689",
+    "name": "A股热力图",
+    "slug": "",
+    "url": "https://52etf.site/",
+    "category": "Economy",
+    "tags": [
+      "stock"
+    ],
+    "description": "大盘云图将所有股票按所属行业进行了板块划分，并以方块形式展示，用红色和绿色的深浅代表涨跌幅度，实现直观的展现大盘的全景图，适合股票爱好者盯盘使用。",
+    "icon": "https://52etf.site/favicon.ico"
+  },
+  {
     "id": "1765298894959",
     "name": "Waline",
     "slug": "waline",
