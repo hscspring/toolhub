@@ -10,6 +10,28 @@ export default defineConfig({
     {
       name: 'save-data-middleware',
       configureServer(server) {
+        server.middlewares.use('/api/tools', (req, res, next) => {
+          if (req.method === 'GET') {
+            try {
+              const targetPath = path.resolve(__dirname, '../web/src/data/tools.json')
+              if (!fs.existsSync(targetPath)) {
+                res.setHeader('Content-Type', 'application/json')
+                res.end(JSON.stringify([]))
+                return
+              }
+              const data = fs.readFileSync(targetPath, 'utf-8')
+              res.setHeader('Content-Type', 'application/json')
+              res.end(data)
+            } catch (e) {
+              console.error('Read failed:', e)
+              res.statusCode = 500
+              res.end(JSON.stringify({ error: e.message }))
+            }
+          } else {
+            next()
+          }
+        })
+
         server.middlewares.use('/api/save', (req, res, next) => {
           if (req.method === 'POST') {
             let body = ''

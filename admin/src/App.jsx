@@ -28,8 +28,8 @@ function ToolEditor({ tool, onUpdate, onClose, onFetch }) {
   const handleTagChange = (e) => {
     const val = e.target.value
     setTagInput(val)
-    onUpdate({ 
-      tags: val.split(/[,\uff0c]/).map(s => s.trim()).filter(Boolean) 
+    onUpdate({
+      tags: val.split(/[,\uff0c]/).map(s => s.trim()).filter(Boolean)
     })
   }
 
@@ -61,20 +61,27 @@ function ToolEditor({ tool, onUpdate, onClose, onFetch }) {
 }
 
 export default function App() {
-  const [tools, setTools] = useState(() => {
-    // load from localStorage or sample
-    try {
-      const raw = localStorage.getItem('toolhub_tools_v1')
-      return raw ? JSON.parse(raw) : sampleData()
-    } catch (e) {
-      return sampleData()
-    }
-  })
+  const [tools, setTools] = useState([])
   const [editing, setEditing] = useState(null)
   const [filter, setFilter] = useState('')
+
   useEffect(() => {
-    localStorage.setItem('toolhub_tools_v1', JSON.stringify(tools, null, 2))
-  }, [tools])
+    // Load from filesystem via API
+    fetch('/api/tools')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          setTools(data)
+        } else {
+          setTools(sampleData())
+        }
+      })
+      .catch(err => {
+        console.error('Failed to load tools:', err)
+        setTools(sampleData())
+      })
+  }, [])
+
 
   function addTool() {
     const t = emptyTool()
@@ -192,9 +199,9 @@ export default function App() {
                 const t = tools.find(x => x.id === editing)
                 if (!t) return <div>Not found</div>
                 return (
-                  <ToolEditor 
-                    tool={t} 
-                    onUpdate={(patch) => updateTool(t.id, patch)} 
+                  <ToolEditor
+                    tool={t}
+                    onUpdate={(patch) => updateTool(t.id, patch)}
                     onClose={() => setEditing(null)}
                     onFetch={() => fetchFromUrl(t.id)}
                   />
@@ -208,7 +215,7 @@ export default function App() {
         </div>
       </div>
 
-      <footer style={{ marginTop: 20, color: '#666' }}>Data stored locally in your browser (localStorage). Use Export to produce tools.json for the web site.</footer>
+      <footer style={{ marginTop: 20, color: '#666' }}>Data loaded from web/src/data/tools.json. Click 'Save to Web' to persist changes.</footer>
     </div>
   )
 }

@@ -41,7 +41,9 @@ const ToolCard = ({ tool }) => {
                 color: 'var(--text-secondary)',
                 fontSize: '0.9rem',
                 marginBottom: 'auto',
-                lineHeight: '1.5'
+                lineHeight: '1.5',
+                height: '4.5em',
+                overflowY: 'auto'
             }}>
                 {t(tool.description, tool.description)}
             </p>
