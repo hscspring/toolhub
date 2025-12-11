@@ -1,12 +1,49 @@
 [
   {
+    "id": "1765437881118",
+    "name": "Reactive Resume - A free and open-source resume builder",
+    "slug": "reactive-resume-a-free-and-open-source-resume-builder",
+    "url": "https://rxresu.me/",
+    "category": "Job",
+    "tags": [
+      "resume"
+    ],
+    "description": "A free and open-source resume builder that simplifies the process of creating, updating, and sharing your resume.",
+    "icon": "https://rxresu.me/icon/dark.svg"
+  },
+  {
+    "id": "1765437738725",
+    "name": "MathJax",
+    "slug": "mathjax",
+    "url": "https://www.mathjax.org/",
+    "category": "Website",
+    "tags": [
+      "latex"
+    ],
+    "description": "Beautiful math in all browsers.",
+    "icon": ""
+  },
+  {
+    "id": "1765437615395",
+    "name": "善用 LaTeX 排版",
+    "slug": "latex-powered-by-discuz",
+    "url": "https://bbs.emath.ac.cn/forum.php?mod=viewthread&tid=5237",
+    "category": "Study",
+    "tags": [
+      "latex"
+    ],
+    "description": "善用LaTeX排版数学公式",
+    "icon": ""
+  },
+  {
     "id": "1765431862909",
     "name": "一译",
     "slug": "",
     "url": "https://yiyibooks.cn",
     "category": "Reading",
     "tags": [
-      "paper"
+      "paper",
+      "study"
     ],
     "description": "论文翻译"
   },

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { sampleData } from './sampleData'
 
+
 function emptyTool() {
   return {
     id: Date.now().toString(),
@@ -11,6 +12,52 @@ function emptyTool() {
     tags: [],
     description: ''
   }
+}
+
+function slugify(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 60)
+}
+
+function ToolEditor({ tool, onUpdate, onClose, onFetch }) {
+  const [tagInput, setTagInput] = useState((tool.tags || []).join(', '))
+
+  useEffect(() => {
+    setTagInput((tool.tags || []).join(', '))
+  }, [tool.id])
+
+  const handleTagChange = (e) => {
+    const val = e.target.value
+    setTagInput(val)
+    onUpdate({ 
+      tags: val.split(/[,\uff0c]/).map(s => s.trim()).filter(Boolean) 
+    })
+  }
+
+  return (
+    <div>
+      <div className="form-row">
+        <input className="input" placeholder="Name" value={tool.name} onChange={e => onUpdate({ name: e.target.value })} />
+      </div>
+      <div className="form-row">
+        <input className="input" placeholder="URL" value={tool.url} onChange={e => onUpdate({ url: e.target.value })} />
+        <button className="button btn-ghost small" onClick={onFetch}>一键抓取</button>
+      </div>
+      <div className="form-row">
+        <input className="input" placeholder="Category" value={tool.category} onChange={e => onUpdate({ category: e.target.value })} />
+        <input className="input small" placeholder="Slug" value={tool.slug} onChange={e => onUpdate({ slug: e.target.value })} />
+      </div>
+      <div style={{ marginBottom: 8 }}>
+        <input className="input" placeholder="Tags (comma separated)" value={tagInput} onChange={handleTagChange} />
+      </div>
+      <div style={{ marginBottom: 8 }}>
+        <textarea className="input" placeholder="Description" rows="6" value={tool.description} onChange={e => onUpdate({ description: e.target.value })}></textarea>
+      </div>
+      <div style={{ display: 'flex', gap: 8 }}>
+        <button className="button btn-primary" onClick={onClose}>Done</button>
+        <button className="button btn-ghost" onClick={() => { onUpdate({ slug: slugify(tool.name || tool.url) }); alert('Slug regenerated'); }}>Regenerate Slug</button>
+      </div>
+    </div>
+  )
 }
 
 export default function App() {
@@ -89,9 +136,7 @@ export default function App() {
     }
   }
 
-  function slugify(s) {
-    return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 60)
-  }
+
 
   const visible = tools.filter(t => {
     if (!filter) return true
@@ -147,31 +192,15 @@ export default function App() {
                 const t = tools.find(x => x.id === editing)
                 if (!t) return <div>Not found</div>
                 return (
-                  <div>
-                    <div className="form-row">
-                      <input className="input" placeholder="Name" value={t.name} onChange={e => updateTool(t.id, { name: e.target.value })} />
-                    </div>
-                    <div className="form-row">
-                      <input className="input" placeholder="URL" value={t.url} onChange={e => updateTool(t.id, { url: e.target.value })} />
-                      <button className="button btn-ghost small" onClick={() => fetchFromUrl(t.id)}>一键抓取</button>
-                    </div>
-                    <div className="form-row">
-                      <input className="input" placeholder="Category" value={t.category} onChange={e => updateTool(t.id, { category: e.target.value })} />
-                      <input className="input small" placeholder="Slug" value={t.slug} onChange={e => updateTool(t.id, { slug: e.target.value })} />
-                    </div>
-                    <div style={{ marginBottom: 8 }}>
-                      <input className="input" placeholder="Tags (comma separated)" value={(t.tags || []).join(', ')} onChange={e => updateTool(t.id, { tags: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })} />
-                    </div>
-                    <div style={{ marginBottom: 8 }}>
-                      <textarea className="input" placeholder="Description" rows="6" value={t.description} onChange={e => updateTool(t.id, { description: e.target.value })}></textarea>
-                    </div>
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      <button className="button btn-primary" onClick={() => { setEditing(null); }}>Done</button>
-                      <button className="button btn-ghost" onClick={() => { updateTool(t.id, { slug: slugify(t.name || t.url) }); alert('Slug regenerated'); }}>Regenerate Slug</button>
-                    </div>
-                  </div>
+                  <ToolEditor 
+                    tool={t} 
+                    onUpdate={(patch) => updateTool(t.id, patch)} 
+                    onClose={() => setEditing(null)}
+                    onFetch={() => fetchFromUrl(t.id)}
+                  />
                 )
               })()
+
             ) : (
               <div style={{ color: '#666' }}>Click a tool on the left to edit, or press "New".</div>
             )}
