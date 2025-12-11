@@ -10,7 +10,6 @@ design.md
 # Production
 dist
 build
-admin
 
 # Misc
 .DS_Store
